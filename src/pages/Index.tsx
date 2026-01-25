@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import {
   Drawer,
@@ -8,8 +9,13 @@ import {
 import { Switch } from "@/components/ui/switch";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [cpf, setCpf] = useState("");
   const [rememberCpf, setRememberCpf] = useState(true);
+
+  const handleEnter = () => {
+    navigate("/withdraw");
+  };
 
   const formatCPF = (value: string) => {
     const numbers = value.replace(/\D/g, "").slice(0, 11);
@@ -92,7 +98,10 @@ const Index = () => {
                 </div>
                 
                 {/* Enter Button */}
-                <button className="w-full py-4 bg-primary text-foreground rounded-full text-xl font-normal mt-8">
+                <button 
+                  onClick={handleEnter}
+                  className="w-full py-4 bg-primary text-foreground rounded-full text-xl font-normal mt-8"
+                >
                   Entrar
                 </button>
               </div>
