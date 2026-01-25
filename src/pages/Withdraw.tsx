@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 
 const Withdraw = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState(300);
   const tax = Math.round(value * 0.15);
 
@@ -45,7 +47,10 @@ const Withdraw = () => {
         </div>
 
         {/* CTA Button */}
-        <button className="w-full py-5 bg-primary text-foreground rounded-full text-2xl font-normal mb-4">
+        <button 
+          onClick={() => navigate("/withdraw-form")}
+          className="w-full py-5 bg-primary text-foreground rounded-full text-2xl font-normal mb-4"
+        >
           Solicitar Saque
         </button>
 
