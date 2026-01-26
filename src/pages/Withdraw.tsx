@@ -9,7 +9,7 @@ const Withdraw = () => {
   const tax = Math.round(value * 0.15);
 
   return (
-    <div className="min-h-screen bg-secondary flex flex-col font-serif max-w-md mx-auto">
+    <div className="min-h-screen bg-secondary flex flex-col max-w-md mx-auto" style={{ fontFamily: "'Open Sans', sans-serif" }}>
       {/* Header */}
       <header className="flex items-center justify-between px-5 py-4 bg-secondary">
         {/* Logo placeholder */}
@@ -49,7 +49,7 @@ const Withdraw = () => {
         {/* CTA Button */}
         <button 
           onClick={() => navigate("/withdraw-form")}
-          className="w-full py-5 bg-primary text-foreground rounded-full text-2xl font-normal mb-4"
+          className="w-full py-5 bg-primary text-foreground rounded-xl text-2xl font-normal mb-4"
         >
           Solicitar Saque
         </button>

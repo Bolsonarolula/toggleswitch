@@ -56,7 +56,7 @@ const WithdrawForm = () => {
   return (
     <div className="min-h-screen bg-primary flex flex-col font-serif max-w-md mx-auto">
       {/* Header */}
-      <header className="flex items-center justify-between px-5 py-4 bg-primary">
+      <header className="flex items-center justify-between px-5 py-4 bg-white">
         {/* Logo placeholder */}
         <div className="w-28 h-9 bg-foreground rounded-sm" />
         
@@ -70,7 +70,7 @@ const WithdrawForm = () => {
       {/* Main content */}
       <main className="flex-1 flex flex-col px-4 pt-6 pb-8">
         {/* Form Card */}
-        <div className="bg-secondary rounded-[2rem] p-6 flex flex-col">
+        <div className="bg-secondary rounded-xl p-6 flex flex-col">
           {/* Title */}
           <h1 className="text-foreground text-[1.5rem] leading-[1.3] font-bold mb-6">
             Preencha o formulário para receber os valores solicitados.
@@ -85,7 +85,7 @@ const WithdrawForm = () => {
               type="text"
               value={nomeCompleto}
               onChange={(e) => setNomeCompleto(e.target.value)}
-              className={`w-full h-16 px-4 rounded-2xl border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded-lg border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.nomeCompleto ? "border-red-500" : "border-primary"
               }`}
             />
@@ -100,7 +100,7 @@ const WithdrawForm = () => {
               type="text"
               value={bancoDestinatario}
               onChange={(e) => setBancoDestinatario(e.target.value)}
-              className={`w-full h-16 px-4 rounded-2xl border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded-lg border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.bancoDestinatario ? "border-red-500" : "border-primary"
               }`}
             />
@@ -115,7 +115,7 @@ const WithdrawForm = () => {
               type="text"
               value={chavePix}
               onChange={(e) => setChavePix(e.target.value)}
-              className={`w-full h-16 px-4 rounded-2xl border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded-lg border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.chavePix ? "border-red-500" : "border-primary"
               }`}
             />
@@ -128,7 +128,7 @@ const WithdrawForm = () => {
               onCheckedChange={setAceitaTermos}
               className="mt-1 data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted"
             />
-            <p className="text-foreground/80 text-sm leading-tight">
+            <p className="text-foreground/80 text-xs leading-tight">
               Ao solicitar o saque para sua conta é necessário está de acordo com o pagamento de 15% do IOF (Imposto sobre Operações Financeiras)
             </p>
           </div>
@@ -136,7 +136,7 @@ const WithdrawForm = () => {
           {/* Submit Button */}
           <button 
             onClick={handleSubmit}
-            className="w-full py-5 bg-primary text-foreground rounded-full text-2xl font-normal"
+            className="w-full py-5 bg-primary text-foreground rounded-xl text-2xl font-normal"
           >
             Próximo
           </button>
