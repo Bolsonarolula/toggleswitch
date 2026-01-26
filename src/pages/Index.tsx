@@ -32,7 +32,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col font-serif max-w-md mx-auto">
       {/* Header */}
-      <header className="flex items-center justify-between px-5 py-4 bg-background">
+      <header className="flex items-center justify-between px-5 py-4 bg-white">
         {/* Logo placeholder */}
         <div className="w-28 h-9 bg-foreground rounded-sm" />
         
@@ -50,7 +50,7 @@ const Index = () => {
 
         {/* Text content */}
         <div className="px-3 py-2">
-          <p className="text-foreground text-base mb-1">
+          <p className="text-foreground text-base mb-1" style={{ fontFamily: "'Open Sans', sans-serif" }}>
             Resgate Seu Dinheiro
           </p>
           
@@ -61,11 +61,11 @@ const Index = () => {
           {/* CTA Button with Drawer */}
           <Drawer>
             <DrawerTrigger asChild>
-              <button className="w-full py-4 bg-secondary text-foreground border-2 border-foreground rounded-full text-lg font-normal tracking-wide mb-6">
+              <button className="w-full py-4 bg-secondary text-foreground border-2 border-foreground rounded-xl text-lg font-normal tracking-wide mb-6">
                 INICIAR
               </button>
             </DrawerTrigger>
-            <DrawerContent className="bg-background border-0 rounded-t-[2rem] px-6 pb-8">
+            <DrawerContent className="bg-white border-0 rounded-t-[2rem] px-6 pb-8">
               {/* Drawer Handle */}
               <div className="mx-auto mt-4 h-1.5 w-12 rounded-full bg-muted-foreground/30" />
               
@@ -109,9 +109,6 @@ const Index = () => {
           </Drawer>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="h-14 bg-footer" />
     </div>
   );
 };
