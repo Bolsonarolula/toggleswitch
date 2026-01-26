@@ -49,7 +49,8 @@ const Withdraw = () => {
         {/* CTA Button */}
         <button 
           onClick={() => navigate("/withdraw-form")}
-          className="w-full py-5 bg-primary text-foreground rounded-xl text-2xl font-normal mb-4"
+          className="w-full py-3 bg-primary text-foreground rounded-lg text-2xl mb-2"
+          style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
         >
           Solicitar Saque
         </button>

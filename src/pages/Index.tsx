@@ -46,11 +46,11 @@ const Index = () => {
       {/* Main content */}
       <main className="flex-1 flex flex-col px-3 bg-background">
         {/* Card/Image placeholder */}
-        <div className="w-full aspect-square bg-card rounded-[2rem] mb-4" />
+        <div className="w-full aspect-square bg-card rounded-[2rem] mb-4 mt-4" />
 
         {/* Text content */}
         <div className="px-3 py-2">
-          <p className="text-foreground text-base mb-1" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+          <p className="text-foreground text-base mb-1" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
             Resgate Seu Dinheiro
           </p>
           
@@ -61,7 +61,7 @@ const Index = () => {
           {/* CTA Button with Drawer */}
           <Drawer>
             <DrawerTrigger asChild>
-              <button className="w-full py-4 bg-secondary text-foreground border-2 border-foreground rounded-xl text-lg font-normal tracking-wide mb-6">
+              <button className="w-full py-4 bg-secondary text-foreground rounded-lg text-lg font-normal tracking-wide mb-6">
                 INICIAR
               </button>
             </DrawerTrigger>
@@ -71,7 +71,7 @@ const Index = () => {
               
               <div className="mt-6">
                 {/* CPF Label */}
-                <label className="text-foreground text-lg font-normal block mb-2">
+                <label className="text-foreground text-lg block mb-2" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                   Digite seu CPF
                 </label>
                 
@@ -87,7 +87,7 @@ const Index = () => {
                 
                 {/* Remember CPF Toggle */}
                 <div className="flex items-center justify-between mt-6">
-                  <span className="text-foreground text-lg font-normal">
+                  <span className="text-foreground text-lg" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                     Lembra CPF
                   </span>
                   <Switch
@@ -100,7 +100,7 @@ const Index = () => {
                 {/* Enter Button */}
                 <button 
                   onClick={handleEnter}
-                  className="w-full py-4 bg-primary text-foreground rounded-full text-xl font-normal mt-8"
+                  className="w-full py-4 bg-primary text-foreground rounded-lg text-xl font-normal mt-8"
                 >
                   Entrar
                 </button>

