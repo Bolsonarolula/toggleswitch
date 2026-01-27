@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { QRCodeSVG } from "qrcode.react";
 import { toast } from "@/hooks/use-toast";
+import willBankLogo from "@/assets/will-bank-logo.png";
 
 const WithdrawForm = () => {
   const navigate = useNavigate();
@@ -57,8 +58,8 @@ const WithdrawForm = () => {
     <div className="min-h-screen bg-primary flex flex-col font-serif max-w-md mx-auto">
       {/* Header */}
       <header className="flex items-center justify-between px-5 py-4 bg-white">
-        {/* Logo placeholder */}
-        <div className="w-28 h-9 bg-foreground rounded-sm" />
+        {/* Logo */}
+        <img src={willBankLogo} alt="Will Bank" className="h-11 w-auto" />
         
         {/* Menu button */}
         <button className="flex items-center gap-2 text-foreground">

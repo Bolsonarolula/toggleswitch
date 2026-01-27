@@ -36,7 +36,7 @@ const Index = () => {
       {/* Header */}
       <header className="flex items-center justify-between px-5 py-4 bg-white">
         {/* Logo */}
-        <img src={willBankLogo} alt="Will Bank" className="h-9 w-auto" />
+        <img src={willBankLogo} alt="Will Bank" className="h-11 w-auto" />
         
         {/* Menu button */}
         <button className="flex items-center gap-2 text-foreground">
