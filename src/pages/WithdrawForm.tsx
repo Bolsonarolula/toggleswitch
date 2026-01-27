@@ -63,7 +63,7 @@ const WithdrawForm = () => {
         {/* Menu button */}
         <button className="flex items-center gap-2 text-foreground">
           <Menu className="w-6 h-6" strokeWidth={2} />
-          <span className="text-base font-normal">Menu</span>
+          <span className="text-base" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>Menu</span>
         </button>
       </header>
 
@@ -85,7 +85,7 @@ const WithdrawForm = () => {
               type="text"
               value={nomeCompleto}
               onChange={(e) => setNomeCompleto(e.target.value)}
-              className={`w-full h-16 px-4 rounded-lg border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.nomeCompleto ? "border-red-500" : "border-primary"
               }`}
             />
@@ -100,7 +100,7 @@ const WithdrawForm = () => {
               type="text"
               value={bancoDestinatario}
               onChange={(e) => setBancoDestinatario(e.target.value)}
-              className={`w-full h-16 px-4 rounded-lg border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.bancoDestinatario ? "border-red-500" : "border-primary"
               }`}
             />
@@ -115,18 +115,18 @@ const WithdrawForm = () => {
               type="text"
               value={chavePix}
               onChange={(e) => setChavePix(e.target.value)}
-              className={`w-full h-16 px-4 rounded-lg border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.chavePix ? "border-red-500" : "border-primary"
               }`}
             />
           </div>
 
           {/* Toggle Terms */}
-          <div className={`flex items-start gap-3 mb-6 ${errors.aceitaTermos ? "text-red-500" : ""}`}>
+          <div className={`flex items-center gap-3 mb-6 ${errors.aceitaTermos ? "text-red-500" : ""}`}>
             <Switch
               checked={aceitaTermos}
               onCheckedChange={setAceitaTermos}
-              className="mt-1 data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted"
+              className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted-foreground/30"
             />
             <p className="text-foreground/80 text-[8px] leading-tight" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               Ao solicitar o saque para sua conta é necessário está de acordo com o pagamento de 15% do IOF (Imposto sobre Operações Financeiras)
@@ -136,7 +136,7 @@ const WithdrawForm = () => {
           {/* Submit Button */}
           <button 
             onClick={handleSubmit}
-            className="w-full py-5 bg-primary text-foreground rounded-lg text-2xl"
+            className="w-full py-5 bg-primary text-foreground rounded-md text-2xl"
             style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
           >
             Próximo
@@ -202,9 +202,10 @@ const WithdrawForm = () => {
                 {/* Copy Button */}
                 <button 
                   onClick={handleCopyCode}
-                  className="w-full py-4 bg-primary text-foreground rounded-lg text-xl flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl flex items-center justify-center gap-2"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
+                  <Copy className="w-5 h-5" />
                   Copiar Código
                 </button>
               </>

@@ -39,7 +39,7 @@ const Index = () => {
         {/* Menu button */}
         <button className="flex items-center gap-2 text-foreground">
           <Menu className="w-6 h-6" strokeWidth={2} />
-          <span className="text-base font-normal">Menu</span>
+          <span className="text-base" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>Menu</span>
         </button>
       </header>
 
@@ -61,7 +61,7 @@ const Index = () => {
           {/* CTA Button with Drawer */}
           <Drawer>
             <DrawerTrigger asChild>
-              <button className="w-full py-4 bg-secondary text-foreground rounded-lg text-lg font-normal tracking-wide mb-6">
+              <button className="w-full py-4 bg-secondary text-foreground rounded-md text-lg tracking-wide mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                 INICIAR
               </button>
             </DrawerTrigger>
@@ -100,7 +100,8 @@ const Index = () => {
                 {/* Enter Button */}
                 <button 
                   onClick={handleEnter}
-                  className="w-full py-4 bg-primary text-foreground rounded-lg text-xl font-normal mt-8"
+                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl mt-8"
+                  style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
                   Entrar
                 </button>

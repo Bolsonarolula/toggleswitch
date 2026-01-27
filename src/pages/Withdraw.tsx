@@ -11,14 +11,14 @@ const Withdraw = () => {
   return (
     <div className="min-h-screen bg-secondary flex flex-col max-w-md mx-auto" style={{ fontFamily: "'Open Sans', sans-serif" }}>
       {/* Header */}
-      <header className="flex items-center justify-between px-5 py-4 bg-secondary">
+      <header className="flex items-center justify-between px-5 py-4 bg-white">
         {/* Logo placeholder */}
         <div className="w-28 h-9 bg-foreground rounded-sm" />
         
         {/* Menu button */}
         <button className="flex items-center gap-2 text-foreground">
           <Menu className="w-6 h-6" strokeWidth={2} />
-          <span className="text-base font-normal">Menu</span>
+          <span className="text-base" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>Menu</span>
         </button>
       </header>
 
@@ -49,7 +49,7 @@ const Withdraw = () => {
         {/* CTA Button */}
         <button 
           onClick={() => navigate("/withdraw-form")}
-          className="w-full py-3 bg-primary text-foreground rounded-lg text-2xl mb-2"
+          className="w-full py-3 bg-primary text-foreground rounded-md text-2xl mb-2"
           style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
         >
           Solicitar Saque
