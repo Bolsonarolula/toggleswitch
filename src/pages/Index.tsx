@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
+import heroImage from "@/assets/hero-image.png";
 import {
   Drawer,
   DrawerContent,
@@ -45,8 +46,12 @@ const Index = () => {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col px-3 bg-background">
-        {/* Card/Image placeholder */}
-        <div className="w-full aspect-square bg-card rounded-[2rem] mb-4 mt-4" />
+        {/* Hero Image */}
+        <img 
+          src={heroImage} 
+          alt="Will Bank" 
+          className="w-full aspect-square object-cover rounded-[2rem] mb-4 mt-4"
+        />
 
         {/* Text content */}
         <div className="px-3 py-2">
