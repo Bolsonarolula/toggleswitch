@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import heroImage from "@/assets/hero-image.png";
+import willBankLogo from "@/assets/will-bank-logo.png";
 import {
   Drawer,
   DrawerContent,
@@ -34,8 +35,8 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col font-serif max-w-md mx-auto">
       {/* Header */}
       <header className="flex items-center justify-between px-5 py-4 bg-white">
-        {/* Logo placeholder */}
-        <div className="w-28 h-9 bg-foreground rounded-sm" />
+        {/* Logo */}
+        <img src={willBankLogo} alt="Will Bank" className="h-9 w-auto" />
         
         {/* Menu button */}
         <button className="flex items-center gap-2 text-foreground">
