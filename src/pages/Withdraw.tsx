@@ -6,7 +6,7 @@ import willBankLogo from "@/assets/will-bank-logo.png";
 
 const Withdraw = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState(300);
+  const [value, setValue] = useState(100);
   const tax = Math.round(value * 0.15);
 
   return (
@@ -50,7 +50,7 @@ const Withdraw = () => {
         {/* CTA Button */}
         <button 
           onClick={() => navigate("/withdraw-form")}
-          className="w-full py-2 bg-primary text-foreground rounded text-xl mb-2"
+          className="w-full py-2 bg-primary text-foreground rounded-md text-xl mb-2"
           style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
         >
           Solicitar Saque

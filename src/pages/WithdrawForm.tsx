@@ -100,7 +100,8 @@ const WithdrawForm = () => {
                 const value = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
                 setNomeCompleto(value);
               }}
-              className={`w-full h-16 px-4 rounded border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              style={{ fontFamily: "'Open Sans', sans-serif" }}
+              className={`w-full h-12 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.nomeCompleto ? "border-red-500" : "border-primary"
               }`}
             />
@@ -118,7 +119,8 @@ const WithdrawForm = () => {
                 const value = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
                 setBancoDestinatario(value);
               }}
-              className={`w-full h-16 px-4 rounded border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              style={{ fontFamily: "'Open Sans', sans-serif" }}
+              className={`w-full h-12 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.bancoDestinatario ? "border-red-500" : "border-primary"
               }`}
             />
@@ -133,7 +135,8 @@ const WithdrawForm = () => {
               type="text"
               value={chavePix}
               onChange={(e) => setChavePix(e.target.value)}
-              className={`w-full h-16 px-4 rounded border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              style={{ fontFamily: "'Open Sans', sans-serif" }}
+              className={`w-full h-12 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.chavePix ? "border-red-500" : "border-primary"
               }`}
             />
@@ -154,7 +157,7 @@ const WithdrawForm = () => {
           {/* Submit Button */}
           <button 
             onClick={handleSubmit}
-            className="w-full py-4 bg-primary text-foreground rounded text-xl"
+            className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
             style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
           >
             Próximo
@@ -166,7 +169,7 @@ const WithdrawForm = () => {
           setShowLoadingModal(open);
           if (!open) setShowBlockedScreen(false);
         }}>
-          <DialogContent className="bg-primary rounded-2xl p-8 max-w-[340px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
+          <DialogContent className="bg-white rounded-2xl p-8 max-w-[340px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
             {!showBlockedScreen ? (
               <>
                 <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
@@ -180,7 +183,7 @@ const WithdrawForm = () => {
                       cx="50"
                       cy="50"
                       r="40"
-                      stroke="hsl(var(--foreground))"
+                      stroke="hsl(var(--primary))"
                       strokeWidth="8"
                       fill="none"
                       strokeLinecap="round"
@@ -198,7 +201,7 @@ const WithdrawForm = () => {
               <>
                 {/* Blocked Screen */}
                 <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
-                  Pagamento bloqueado !
+                  Pagamento bloqueado
                 </h2>
                 
                 {/* Blocked Icon */}
@@ -213,7 +216,7 @@ const WithdrawForm = () => {
                 {/* Share Button */}
                 <button 
                   onClick={handleShare}
-                  className="w-full py-4 bg-white text-foreground rounded text-xl"
+                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
                   Compartilhar
