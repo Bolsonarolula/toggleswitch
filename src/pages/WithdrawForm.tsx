@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, Copy } from "lucide-react";
+import { Menu, Ban } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
 } from "@/components/ui/dialog";
-import { QRCodeSVG } from "qrcode.react";
 import { toast } from "@/hooks/use-toast";
 import willBankLogo from "@/assets/will-bank-logo.png";
 
@@ -18,25 +17,37 @@ const WithdrawForm = () => {
   const [aceitaTermos, setAceitaTermos] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: boolean}>({});
   const [showLoadingModal, setShowLoadingModal] = useState(false);
-  const [showQrCode, setShowQrCode] = useState(false);
-  
-  const pixCode = "00020101021226810014br.gov.";
+  const [showBlockedScreen, setShowBlockedScreen] = useState(false);
 
   useEffect(() => {
-    if (showLoadingModal && !showQrCode) {
+    if (showLoadingModal && !showBlockedScreen) {
       const timer = setTimeout(() => {
-        setShowQrCode(true);
+        setShowBlockedScreen(true);
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [showLoadingModal, showQrCode]);
+  }, [showLoadingModal, showBlockedScreen]);
 
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(pixCode);
-    toast({
-      title: "Código copiado!",
-      description: "O código Pix foi copiado para a área de transferência.",
-    });
+  const handleShare = async () => {
+    const shareData = {
+      title: 'Will Bank',
+      text: 'Confira o Will Bank!',
+      url: window.location.origin,
+    };
+    
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Compartilhamento cancelado');
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.origin);
+      toast({
+        title: "Link copiado!",
+        description: "O link foi copiado para a área de transferência.",
+      });
+    }
   };
 
   const handleSubmit = () => {
@@ -153,10 +164,10 @@ const WithdrawForm = () => {
         {/* Loading Modal */}
         <Dialog open={showLoadingModal} onOpenChange={(open) => {
           setShowLoadingModal(open);
-          if (!open) setShowQrCode(false);
+          if (!open) setShowBlockedScreen(false);
         }}>
-          <DialogContent className="bg-white rounded-3xl p-8 max-w-[320px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
-            {!showQrCode ? (
+          <DialogContent className="bg-primary rounded-2xl p-8 max-w-[340px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
+            {!showBlockedScreen ? (
               <>
                 <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                   Gerando Qrcode
@@ -169,7 +180,7 @@ const WithdrawForm = () => {
                       cx="50"
                       cy="50"
                       r="40"
-                      stroke="hsl(var(--primary))"
+                      stroke="hsl(var(--foreground))"
                       strokeWidth="8"
                       fill="none"
                       strokeLinecap="round"
@@ -185,35 +196,27 @@ const WithdrawForm = () => {
               </>
             ) : (
               <>
-                {/* QR Code */}
-                <div className="w-full flex justify-center">
-                  <QRCodeSVG 
-                    value={pixCode} 
-                    size={220}
-                    level="H"
-                    className="rounded-none"
-                  />
+                {/* Blocked Screen */}
+                <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
+                  Pagamento bloqueado !
+                </h2>
+                
+                {/* Blocked Icon */}
+                <div className="w-40 h-40 flex items-center justify-center">
+                  <Ban className="w-36 h-36 text-red-600" strokeWidth={2.5} />
                 </div>
 
-                <p className="text-foreground/70 text-sm text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                  Ao finalizar o pagamento você recebe os fundos solicitados via Pix, através da conta bancária vinculada.
+                <p className="text-foreground text-xl text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 600 }}>
+                  Compartilhe este site com 5 pessoas para desbloquear.
                 </p>
 
-                {/* Pix Code Display */}
-                <div className="w-full bg-white border-2 border-muted rounded-lg px-4 py-3 overflow-hidden">
-                  <p className="text-foreground text-center text-sm font-mono truncate">
-                    {pixCode}
-                  </p>
-                </div>
-
-                {/* Copy Button */}
+                {/* Share Button */}
                 <button 
-                  onClick={handleCopyCode}
-                  className="w-full py-3 bg-primary text-foreground rounded text-lg flex items-center justify-center gap-2"
+                  onClick={handleShare}
+                  className="w-full py-4 bg-white text-foreground rounded text-xl"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
-                  <Copy className="w-5 h-5" />
-                  Copiar Código
+                  Compartilhar
                 </button>
               </>
             )}
