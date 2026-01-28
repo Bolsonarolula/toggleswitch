@@ -13,10 +13,21 @@ import { Switch } from "@/components/ui/switch";
 const Index = () => {
   const navigate = useNavigate();
   const [cpf, setCpf] = useState("");
-  const [rememberCpf, setRememberCpf] = useState(true);
+  const [rememberCpf, setRememberCpf] = useState(false);
+  const [errors, setErrors] = useState<{cpf?: boolean; toggle?: boolean}>({});
 
   const handleEnter = () => {
-    navigate("/withdraw");
+    const newErrors: {cpf?: boolean; toggle?: boolean} = {};
+    
+    // CPF must have 14 characters (000.000.000-00)
+    if (cpf.length !== 14) newErrors.cpf = true;
+    if (!rememberCpf) newErrors.toggle = true;
+    
+    setErrors(newErrors);
+    
+    if (Object.keys(newErrors).length === 0) {
+      navigate("/withdraw");
+    }
   };
 
   const formatCPF = (value: string) => {
@@ -67,7 +78,7 @@ const Index = () => {
           {/* CTA Button with Drawer */}
           <Drawer>
             <DrawerTrigger asChild>
-              <button className="w-full py-4 bg-secondary text-foreground rounded-md text-lg tracking-wide mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
+              <button className="w-full py-4 bg-secondary text-foreground rounded text-lg tracking-wide mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                 INICIAR
               </button>
             </DrawerTrigger>
@@ -87,26 +98,26 @@ const Index = () => {
                   value={cpf}
                   onChange={handleCpfChange}
                   placeholder="000.000.000-00"
-                  className="w-full bg-transparent text-primary text-4xl font-serif placeholder:text-primary/50 border-0 outline-none py-2"
+                  className={`w-full bg-transparent text-primary text-4xl font-serif placeholder:text-primary/50 border-0 outline-none py-2 ${errors.cpf ? 'border-b-2 border-red-500' : ''}`}
                   inputMode="numeric"
                 />
                 
                 {/* Remember CPF Toggle */}
-                <div className="flex items-center justify-between mt-6">
+                <div className={`flex items-center justify-between mt-6 ${errors.toggle ? 'text-red-500' : ''}`}>
                   <span className="text-foreground text-lg" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                     Lembra CPF
                   </span>
                   <Switch
                     checked={rememberCpf}
                     onCheckedChange={setRememberCpf}
-                    className="data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted-foreground/30"
+                    className={`data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted-foreground/30 ${errors.toggle ? 'border border-red-500' : ''}`}
                   />
                 </div>
                 
                 {/* Enter Button */}
                 <button 
                   onClick={handleEnter}
-                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl mt-8"
+                  className="w-full py-4 bg-primary text-foreground rounded text-xl mt-8"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
                   Entrar

@@ -85,8 +85,11 @@ const WithdrawForm = () => {
             <input
               type="text"
               value={nomeCompleto}
-              onChange={(e) => setNomeCompleto(e.target.value)}
-              className={`w-full h-16 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              onChange={(e) => {
+                const value = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+                setNomeCompleto(value);
+              }}
+              className={`w-full h-16 px-4 rounded border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.nomeCompleto ? "border-red-500" : "border-primary"
               }`}
             />
@@ -100,8 +103,11 @@ const WithdrawForm = () => {
             <input
               type="text"
               value={bancoDestinatario}
-              onChange={(e) => setBancoDestinatario(e.target.value)}
-              className={`w-full h-16 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              onChange={(e) => {
+                const value = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
+                setBancoDestinatario(value);
+              }}
+              className={`w-full h-16 px-4 rounded border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.bancoDestinatario ? "border-red-500" : "border-primary"
               }`}
             />
@@ -116,7 +122,7 @@ const WithdrawForm = () => {
               type="text"
               value={chavePix}
               onChange={(e) => setChavePix(e.target.value)}
-              className={`w-full h-16 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-16 px-4 rounded border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.chavePix ? "border-red-500" : "border-primary"
               }`}
             />
@@ -137,7 +143,7 @@ const WithdrawForm = () => {
           {/* Submit Button */}
           <button 
             onClick={handleSubmit}
-            className="w-full py-5 bg-primary text-foreground rounded-md text-2xl"
+            className="w-full py-4 bg-primary text-foreground rounded text-xl"
             style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
           >
             Próximo
@@ -203,7 +209,7 @@ const WithdrawForm = () => {
                 {/* Copy Button */}
                 <button 
                   onClick={handleCopyCode}
-                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl flex items-center justify-center gap-2"
+                  className="w-full py-3 bg-primary text-foreground rounded text-lg flex items-center justify-center gap-2"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
                   <Copy className="w-5 h-5" />
