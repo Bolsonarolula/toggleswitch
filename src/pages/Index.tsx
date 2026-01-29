@@ -68,7 +68,7 @@ const Index = () => {
           {/* CTA Button with Drawer */}
           <Drawer>
             <DrawerTrigger asChild>
-              <button className="w-full py-4 bg-secondary text-foreground rounded text-lg tracking-wide mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
+              <button className="w-full py-4 bg-secondary text-foreground rounded-md text-xl mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                 INICIAR
               </button>
             </DrawerTrigger>
@@ -107,10 +107,10 @@ const Index = () => {
                 {/* Enter Button */}
                 <button 
                   onClick={handleEnter}
-                  className="w-full py-4 bg-primary text-foreground rounded text-xl mt-8"
+                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl mt-8"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
-                  Entrar
+                  ENTRAR
                 </button>
               </div>
             </DrawerContent>

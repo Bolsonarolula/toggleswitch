@@ -149,7 +149,7 @@ const WithdrawForm = () => {
             className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
             style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
           >
-            Próximo
+            PRÓXIMO
           </button>
         </div>
 
@@ -208,7 +208,7 @@ const WithdrawForm = () => {
                   className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
-                  Compartilhar
+                  COMPARTILHAR
                 </button>
               </>
             )}
