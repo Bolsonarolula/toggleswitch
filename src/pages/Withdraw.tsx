@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import willBankLogo from "@/assets/will-bank-logo.png";
+import Header from "@/components/Header";
 
 const Withdraw = () => {
   const navigate = useNavigate();
@@ -12,16 +11,7 @@ const Withdraw = () => {
   return (
     <div className="min-h-screen bg-secondary flex flex-col max-w-md mx-auto" style={{ fontFamily: "'Open Sans', sans-serif" }}>
       {/* Header */}
-      <header className="flex items-center justify-between px-5 py-4 bg-white">
-        {/* Logo */}
-        <img src={willBankLogo} alt="Will Bank" className="h-11 w-auto" />
-        
-        {/* Menu button */}
-        <button className="flex items-center gap-2 text-foreground">
-          <Menu className="w-6 h-6" strokeWidth={2} />
-          <span className="text-base" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>Menu</span>
-        </button>
-      </header>
+      <Header />
 
       {/* Main content */}
       <main className="flex-1 flex flex-col px-6 pt-16">
