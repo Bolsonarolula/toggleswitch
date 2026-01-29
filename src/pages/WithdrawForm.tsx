@@ -96,23 +96,38 @@ const WithdrawForm = () => {
             />
           </div>
 
-          {/* Banco Destinatário */}
+          {/* Instituição Destinatária */}
           <div className="mb-5">
             <label className="text-foreground text-lg block mb-2" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
-              Banco Destinatário
+              Instituição Destinatária
             </label>
-            <input
-              type="text"
+            <select
               value={bancoDestinatario}
-              onChange={(e) => {
-                const value = e.target.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
-                setBancoDestinatario(value);
-              }}
+              onChange={(e) => setBancoDestinatario(e.target.value)}
               style={{ fontFamily: "'Open Sans', sans-serif" }}
               className={`w-full h-12 px-4 rounded-sm border bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.bancoDestinatario ? "border-red-500" : "border-primary"
               }`}
-            />
+            >
+              <option value="">Selecione uma instituição</option>
+              <option value="001">Banco do Brasil</option>
+              <option value="033">Santander</option>
+              <option value="104">Caixa Econômica Federal</option>
+              <option value="237">Bradesco</option>
+              <option value="260">Nubank</option>
+              <option value="290">PagBank</option>
+              <option value="323">Mercado Pago</option>
+              <option value="341">Itaú</option>
+              <option value="380">PicPay</option>
+              <option value="077">Inter</option>
+              <option value="756">Sicoob</option>
+              <option value="748">Sicredi</option>
+              <option value="336">C6 Bank</option>
+              <option value="212">Original</option>
+              <option value="655">Neon</option>
+              <option value="637">Sofisa Direto</option>
+              <option value="outro">Outro</option>
+            </select>
           </div>
 
           {/* Chave Pix */}
