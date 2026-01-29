@@ -90,7 +90,7 @@ const WithdrawForm = () => {
                 setNomeCompleto(value);
               }}
               style={{ fontFamily: "'Open Sans', sans-serif" }}
-              className={`w-full h-12 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-12 px-4 rounded-sm border bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.nomeCompleto ? "border-red-500" : "border-primary"
               }`}
             />
@@ -109,7 +109,7 @@ const WithdrawForm = () => {
                 setBancoDestinatario(value);
               }}
               style={{ fontFamily: "'Open Sans', sans-serif" }}
-              className={`w-full h-12 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-12 px-4 rounded-sm border bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.bancoDestinatario ? "border-red-500" : "border-primary"
               }`}
             />
@@ -125,7 +125,7 @@ const WithdrawForm = () => {
               value={chavePix}
               onChange={(e) => setChavePix(e.target.value)}
               style={{ fontFamily: "'Open Sans', sans-serif" }}
-              className={`w-full h-12 px-4 rounded-md border-2 bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+              className={`w-full h-12 px-4 rounded-sm border bg-white text-foreground text-lg focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.chavePix ? "border-red-500" : "border-primary"
               }`}
             />
@@ -149,7 +149,7 @@ const WithdrawForm = () => {
             className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
             style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
           >
-            PRÓXIMO
+            Próximo
           </button>
         </div>
 
@@ -208,7 +208,7 @@ const WithdrawForm = () => {
                   className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
-                  COMPARTILHAR
+                  Compartilhar
                 </button>
               </>
             )}

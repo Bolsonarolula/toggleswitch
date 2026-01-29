@@ -43,7 +43,7 @@ const Withdraw = () => {
           className="w-full py-4 bg-primary text-foreground rounded-md text-xl mb-2"
           style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
         >
-          SOLICITAR SAQUE
+          Solicitar saque
         </button>
 
         {/* Tax Info */}
