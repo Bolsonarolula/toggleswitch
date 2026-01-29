@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Menu, Ban } from "lucide-react";
+import { Ban } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
 } from "@/components/ui/dialog";
 import { toast } from "@/hooks/use-toast";
-import willBankLogo from "@/assets/will-bank-logo.png";
+import Header from "@/components/Header";
 
 const WithdrawForm = () => {
-  const navigate = useNavigate();
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [bancoDestinatario, setBancoDestinatario] = useState("");
   const [chavePix, setChavePix] = useState("");
@@ -68,16 +66,7 @@ const WithdrawForm = () => {
   return (
     <div className="min-h-screen bg-primary flex flex-col font-serif max-w-md mx-auto">
       {/* Header */}
-      <header className="flex items-center justify-between px-5 py-4 bg-white">
-        {/* Logo */}
-        <img src={willBankLogo} alt="Will Bank" className="h-11 w-auto" />
-        
-        {/* Menu button */}
-        <button className="flex items-center gap-2 text-foreground">
-          <Menu className="w-6 h-6" strokeWidth={2} />
-          <span className="text-base" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>Menu</span>
-        </button>
-      </header>
+      <Header />
 
       {/* Main content */}
       <main className="flex-1 flex flex-col px-4 pt-6 pb-8">
