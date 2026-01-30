@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import heroImage from "@/assets/hero-image.png";
+import heroImage from "@/assets/hero-image.jpg";
 import {
   Drawer,
   DrawerContent,
@@ -69,7 +69,7 @@ const Index = () => {
           <Drawer>
             <DrawerTrigger asChild>
               <button className="w-full py-4 bg-secondary text-foreground rounded-md text-xl mb-6" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
-                INICIAR
+                Iniciar
               </button>
             </DrawerTrigger>
             <DrawerContent className="bg-white border-0 rounded-t-[2rem] px-6 pb-8">
@@ -110,7 +110,7 @@ const Index = () => {
                   className="w-full py-4 bg-primary text-foreground rounded-md text-xl mt-8"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
-                  ENTRAR
+                  Entrar
                 </button>
               </div>
             </DrawerContent>
