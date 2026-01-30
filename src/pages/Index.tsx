@@ -47,7 +47,7 @@ const Index = () => {
       <Header />
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col px-3 bg-background">
+      <main className="flex-1 flex flex-col px-1 bg-background">
         {/* Hero Image */}
         <img 
           src={heroImage} 
