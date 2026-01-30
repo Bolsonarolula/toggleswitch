@@ -175,7 +175,7 @@ const WithdrawForm = () => {
         }}>
           <DialogContent className="bg-white rounded-2xl p-8 max-w-[340px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
             {!showBlockedScreen ? (
-              <>
+              <div className="w-full flex flex-col items-center gap-6">
                 <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                   Gerando Qrcode
                 </h2>
@@ -200,9 +200,9 @@ const WithdrawForm = () => {
                 <p className="text-foreground/70 text-[10px] text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                   O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
                 </p>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="w-full flex flex-col items-center gap-6">
                 {/* Blocked Screen */}
                 <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
                   Pagamento bloqueado
@@ -220,12 +220,12 @@ const WithdrawForm = () => {
                 {/* Share Button */}
                 <button 
                   onClick={handleShare}
-                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl"
+                  className="w-full py-4 bg-primary text-foreground rounded-md text-xl mt-2"
                   style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
                 >
                   Compartilhar
                 </button>
-              </>
+              </div>
             )}
           </DialogContent>
         </Dialog>
