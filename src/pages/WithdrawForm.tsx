@@ -224,24 +224,41 @@ const WithdrawForm = () => {
                 </p>
               </div>
             ) : showQrCode ? (
-              <div className="w-full flex flex-col items-center gap-6">
-                {/* QR Code Screen */}
-                <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
-                  Pague a taxa IOF
-                </h2>
-                
+              <div className="w-full flex flex-col items-center gap-4">
                 {/* QR Code */}
-                <div className="bg-white p-4 rounded-lg">
+                <div className="bg-white p-2">
                   <QRCodeSVG 
-                    value={window.location.origin}
-                    size={180}
+                    value="00020101021226810014br.gov.bcb.pix2559pix.example.com/qr/v2/12345678-1234-1234-1234-1234567890ab5204000053039865802BR5925NOME DO RECEBEDOR6009SAO PAULO62070503***6304"
+                    size={200}
                     level="H"
                   />
                 </div>
 
-                <p className="text-foreground/70 text-[10px] text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                  Escaneie o QR code para efetuar o pagamento da taxa IOF.
+                <p className="text-foreground text-sm text-center leading-snug px-2" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                  Ao finalizar o pagamento você recebe os fundos solicitados via Pix, através da conta bancária vinculada.
                 </p>
+
+                {/* Pix Code Box */}
+                <div className="w-full border-2 border-primary rounded-lg py-3 px-4">
+                  <p className="text-foreground text-center text-sm font-medium break-all" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                    00020101021226810014br.gov.
+                  </p>
+                </div>
+
+                {/* Copy Button */}
+                <button 
+                  onClick={() => {
+                    navigator.clipboard.writeText("00020101021226810014br.gov.bcb.pix2559pix.example.com/qr/v2/12345678-1234-1234-1234-1234567890ab5204000053039865802BR5925NOME DO RECEBEDOR6009SAO PAULO62070503***6304");
+                    toast({
+                      title: "Código copiado!",
+                      description: "O código Pix foi copiado para a área de transferência.",
+                    });
+                  }}
+                  className="w-full py-4 bg-primary text-foreground rounded-xl text-xl"
+                  style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}
+                >
+                  Copiar Código
+                </button>
               </div>
             ) : showConfirmed ? (
               <div className="w-full flex flex-col items-center gap-6">
