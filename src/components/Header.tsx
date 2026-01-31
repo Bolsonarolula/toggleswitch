@@ -38,7 +38,7 @@ const Header = () => {
             <span className="text-base" style={{ fontFamily: "'Open Sans', sans-serif", fontWeight: 700 }}>Menu</span>
           </button>
         </SheetTrigger>
-        <SheetContent side="right" className="w-[280px] bg-white p-0 border-l-0">
+        <SheetContent side="right" className="w-[280px] bg-white p-0 border-l-0 [&>button]:hidden">
           {/* Menu Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-muted">
             <img src={willBankLogo} alt="Will Bank" className="h-9 w-auto" />
